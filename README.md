@@ -1,0 +1,2 @@
+# embedding-api
+Embedding API
