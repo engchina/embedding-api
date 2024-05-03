@@ -21,3 +21,9 @@ or on windows
 or on linux
 ./main.sh
 ```
+
+## Use
+
+```
+http://localhost:7965/v1/embed
+```
