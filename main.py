@@ -6,12 +6,11 @@ from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
 app = FastAPI()
-bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1")
-bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)
-# e5_large = SentenceTransformer('intfloat/multilingual-e5-large', trust_remote_code=True)
-e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct', trust_remote_code=True)
-qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device='cuda',
-                               target_devices=['cuda:1', 'cuda:0'])
+bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1", device='cuda')
+bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, device='cuda')
+# e5_large = SentenceTransformer('intfloat/multilingual-e5-large', trust_remote_code=True, device='cuda')
+e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct', trust_remote_code=True, device='cuda')
+qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device='cuda')
 
 
 class DocumentRankerManager(BaseModel):
