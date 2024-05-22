@@ -8,9 +8,10 @@ from sentence_transformers import SentenceTransformer
 app = FastAPI()
 bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1")
 bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)
-e5_large = SentenceTransformer('intfloat/multilingual-e5-large')
-e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct')
-qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device="cuda:1")
+# e5_large = SentenceTransformer('intfloat/multilingual-e5-large', trust_remote_code=True)
+e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct', trust_remote_code=True)
+qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device='cuda',
+                               target_devices=['cuda:1', 'cuda:0'])
 
 
 class DocumentRankerManager(BaseModel):
@@ -26,8 +27,8 @@ def embed_docs(manager: DocumentRankerManager) -> list:
 
     if embedding_model == 'maidalun1020/bce-embedding-base_v1':
         embeddings = bce_embedding_base_v1.encode(sentences)
-    # elif embedding_model == 'BAAI/bge-m3':
-    #     embeddings = [bge_m3.encode(sentence)['dense_vecs'] for sentence in sentences]
+    elif embedding_model == 'BAAI/bge-m3':
+        embeddings = [bge_m3.encode(sentence)['dense_vecs'] for sentence in sentences]
     # elif embedding_model == 'intfloat/multilingual-e5-large':
     #     embeddings = e5_large.encode(sentences, normalize_embeddings=True)
     elif embedding_model == 'intfloat/multilingual-e5-large-instruct':
