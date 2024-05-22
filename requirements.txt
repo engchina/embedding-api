@@ -11,4 +11,4 @@ torchaudio==2.2.1
 sentence-transformers==2.7.0
 transformers==4.39.3
 BCEmbedding==0.1.1
-flash-attn
+packaging==24.0

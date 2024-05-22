@@ -9,7 +9,10 @@ conda activate embedding-api
 ```
 
 ```
+pip install -U pip
 pip install -r requirements.txt
+
+pip install flash-attn==2.5.8
 ```
 
 ## Run
