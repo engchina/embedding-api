@@ -10,7 +10,7 @@ bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embe
 bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)
 e5_large = SentenceTransformer('intfloat/multilingual-e5-large')
 e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct')
-qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True)
+qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device="cuda:1")
 
 
 class DocumentRankerManager(BaseModel):
