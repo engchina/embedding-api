@@ -30,3 +30,9 @@ or on linux
 ```
 http://localhost:7965/v1/embed
 ```
+
+
+## Supported Models
+- text-embedding-ada-002
+- bce-embedding-base_v1
+- zpoint_large_embedding_zh
