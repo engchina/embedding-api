@@ -3,6 +3,8 @@ fastapi==0.110.2
 uvicorn==0.29.0
 requests==2.31.0
 pydantic==2.7.1
+pydantic_core==2.18.2
+pydantic-settings==2.2.1
 FlagEmbedding==1.2.8
 fastembed==0.2.5
 torch==2.2.1
@@ -12,3 +14,5 @@ sentence-transformers==2.7.0
 transformers==4.39.3
 BCEmbedding==0.1.1
 packaging==24.0
+tiktoken==0.7.0
+numpy==1.26.4
