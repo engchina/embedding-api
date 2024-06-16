@@ -1,4 +1,4 @@
 #!/bin/bash
 eval "$(conda shell.bash hook)"
 conda activate embedding-api
-uvicorn main:app --reload --host 0.0.0.0 --port 7965
+uvicorn openai_api_main:app --reload --host 0.0.0.0 --port 7965
