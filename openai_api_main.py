@@ -38,11 +38,11 @@ class EmbeddingsResponse(BaseModel):
 
 WORKER_API_EMBEDDING_BATCH_SIZE = int(os.getenv("FASTCHAT_WORKER_API_EMBEDDING_BATCH_SIZE", 4))
 
-xiaobu_embedding_v2 = EmbeddingModel(model_name_or_path="lier007/xiaobu-embedding-v2", device='cuda',
-                                     trust_remote_code=True)
-
-bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1", device='cuda',
-                                       trust_remote_code=True)
+# xiaobu_embedding_v2 = EmbeddingModel(model_name_or_path="lier007/xiaobu-embedding-v2", device='cuda',
+#                                      trust_remote_code=True)
+#
+# bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1", device='cuda',
+#                                        trust_remote_code=True)
 
 # bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, device='cuda')
 e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct', trust_remote_code=True,
@@ -51,8 +51,8 @@ e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct
 # qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device='cuda')
 
 
-zpoint_large_embedding_zh = SentenceTransformer('iampanda/zpoint_large_embedding_zh', device='cuda',
-                                                trust_remote_code=True)
+# zpoint_large_embedding_zh = SentenceTransformer('iampanda/zpoint_large_embedding_zh', device='cuda',
+#                                                 trust_remote_code=True)
 
 app = FastAPI()
 
@@ -60,17 +60,17 @@ app = FastAPI()
 def get_embedding_model(model_name: str):
     print(f"{model_name=}")
     if model_name == 'text-embedding-ada-002':
-        return bce_embedding_base_v1
-    elif model_name == 'lier007/xiaobu-embedding-v2' or model_name == 'xiaobu-embedding-v2':
-        return xiaobu_embedding_v2
-    elif model_name == 'maidalun1020/bce-embedding-base_v1' or model_name == 'bce-embedding-base_v1':
-        return bce_embedding_base_v1
-    elif model_name == 'iampanda/zpoint_large_embedding_zh' or model_name == 'zpoint_large_embedding_zh':
-        return zpoint_large_embedding_zh
+        return e5_large_instruct
+    # elif model_name == 'lier007/xiaobu-embedding-v2' or model_name == 'xiaobu-embedding-v2':
+    #     return xiaobu_embedding_v2
+    # elif model_name == 'maidalun1020/bce-embedding-base_v1' or model_name == 'bce-embedding-base_v1':
+    #     return bce_embedding_base_v1
+    # elif model_name == 'iampanda/zpoint_large_embedding_zh' or model_name == 'zpoint_large_embedding_zh':
+    #     return zpoint_large_embedding_zh
     # elif model_name == 'BAAI/bge-m3':
     #     return bge_m3
-    # elif model_name == 'intfloat/multilingual-e5-large-instruct' or model_name == 'multilingual-e5-large-instruct':
-    #     return e5_large_instruct
+    elif model_name == 'intfloat/multilingual-e5-large-instruct' or model_name == 'multilingual-e5-large-instruct':
+        return e5_large_instruct
     # elif model_name == 'Alibaba-NLP/gte-Qwen1.5-7B-instruct':
     #     return qte_qwen
     else:
