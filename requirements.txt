@@ -10,7 +10,7 @@ fastembed==0.2.5
 torch==2.2.1
 torchvision==0.17.1
 torchaudio==2.2.1
-sentence-transformers==2.7.0
+sentence-transformers==3.0.1
 transformers==4.39.3
 BCEmbedding==0.1.1
 packaging==24.0

@@ -38,13 +38,15 @@ class EmbeddingsResponse(BaseModel):
 
 WORKER_API_EMBEDDING_BATCH_SIZE = int(os.getenv("FASTCHAT_WORKER_API_EMBEDDING_BATCH_SIZE", 4))
 
+xiaobu_embedding_v2 = EmbeddingModel(model_name_or_path="lier007/xiaobu-embedding-v2", device='cuda',
+                                     trust_remote_code=True)
+
 bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1", device='cuda',
                                        trust_remote_code=True)
 
 # bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, device='cuda')
-# e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct', trust_remote_code=True,
-#                                         device='cuda')
-
+e5_large_instruct = SentenceTransformer('intfloat/multilingual-e5-large-instruct', trust_remote_code=True,
+                                        device='cuda')
 
 # qte_qwen = SentenceTransformer("Alibaba-NLP/gte-Qwen1.5-7B-instruct", trust_remote_code=True, device='cuda')
 
@@ -59,13 +61,15 @@ def get_embedding_model(model_name: str):
     print(f"{model_name=}")
     if model_name == 'text-embedding-ada-002':
         return bce_embedding_base_v1
+    elif model_name == 'lier007/xiaobu-embedding-v2' or model_name == 'xiaobu-embedding-v2':
+        return xiaobu_embedding_v2
     elif model_name == 'maidalun1020/bce-embedding-base_v1' or model_name == 'bce-embedding-base_v1':
         return bce_embedding_base_v1
     elif model_name == 'iampanda/zpoint_large_embedding_zh' or model_name == 'zpoint_large_embedding_zh':
         return zpoint_large_embedding_zh
     # elif model_name == 'BAAI/bge-m3':
     #     return bge_m3
-    # elif model_name == 'intfloat/multilingual-e5-large-instruct':
+    # elif model_name == 'intfloat/multilingual-e5-large-instruct' or model_name == 'multilingual-e5-large-instruct':
     #     return e5_large_instruct
     # elif model_name == 'Alibaba-NLP/gte-Qwen1.5-7B-instruct':
     #     return qte_qwen
@@ -119,6 +123,8 @@ async def create_embeddings(request: EmbeddingsRequest, model_name: str = None) 
     for num_batch, batch in enumerate(batches):
         if request.model == 'BAAI/bge-m3':
             embeddings = [embedding_model.encode(sentence)['dense_vecs'] for sentence in batch]
+        elif request.model == 'lier007/xiaobu-embedding-v2':
+            embeddings = embedding_model.encode(batch, normalize_embeddings=True)
         else:
             embeddings = embedding_model.encode(batch)
         data += [
