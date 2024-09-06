@@ -6,12 +6,12 @@ pydantic==2.7.1
 pydantic_core==2.18.2
 pydantic-settings==2.2.1
 FlagEmbedding==1.2.8
-fastembed==0.2.5
+#fastembed==0.2.5
 torch==2.2.1
 torchvision==0.17.1
 torchaudio==2.2.1
 sentence-transformers==3.0.1
-transformers==4.39.3
+transformers==4.43.3
 BCEmbedding==0.1.1
 packaging==24.0
 tiktoken==0.7.0
