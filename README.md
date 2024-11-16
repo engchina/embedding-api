@@ -13,6 +13,7 @@ pip install -U pip
 pip install -r requirements.txt
 
 pip install flash-attn==2.5.8
+# pip list --format=freeze > requirements.txt
 ```
 
 ## Run
@@ -36,3 +37,4 @@ http://localhost:7965/v1/embed
 - text-embedding-ada-002
 - bce-embedding-base_v1
 - zpoint_large_embedding_zh
+- 
