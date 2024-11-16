@@ -1,11 +1,11 @@
-# embedding-api
-Embedding API
+# embeddings-api
+Embeddings API
 
 ## Prepare
 
 ```
-conda create -n embedding-api python=3.11 -y
-conda activate embedding-api
+conda create -n embeddings-api python=3.11 -y
+conda activate embeddings-api
 ```
 
 ```
@@ -37,4 +37,3 @@ http://localhost:7965/v1/embed
 - text-embedding-ada-002
 - bce-embedding-base_v1
 - zpoint_large_embedding_zh
-- 
