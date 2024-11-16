@@ -1,13 +1,10 @@
-import numpy as np
 import os
-import tiktoken
-import torch
-from BCEmbedding import EmbeddingModel
-from FlagEmbedding import BGEM3FlagModel
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from typing import List, Optional, Union, Dict, Any
 
+import numpy as np
+import tiktoken
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
 
@@ -50,7 +47,7 @@ WORKER_API_EMBEDDING_BATCH_SIZE = int(os.getenv("FASTCHAT_WORKER_API_EMBEDDING_B
 # bce_embedding_base_v1 = EmbeddingModel(model_name_or_path="maidalun1020/bce-embedding-base_v1", device='cuda',
 #                                        trust_remote_code=True)
 
-bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, device='cuda')
+# bge_m3 = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True, device='cuda')
 
 # bge_multilingual_gemma2 = SentenceTransformer("BAAI/bge-multilingual-gemma2",
 #                                               model_kwargs={"torch_dtype": torch.float16})
@@ -82,11 +79,11 @@ def get_embedding_model(model_name: str):
     #     return bce_embedding_base_v1
     # elif model_name == 'iampanda/zpoint_large_embedding_zh' or model_name == 'zpoint_large_embedding_zh':
     #     return zpoint_large_embedding_zh
-    if model_name == 'BAAI/bge-m3' or model_name == 'bge-m3':
-        return bge_m3
+    # if model_name == 'BAAI/bge-m3' or model_name == 'bge-m3':
+    #     return bge_m3
     # elif model_name == 'BAAI/bge-multilingual-gemma2' or model_name == 'bge-multilingual-gemma2':
     #     return bge_multilingual_gemma2
-    if model_name == "gpt-4" or model_name == 'intfloat/multilingual-e5-large-instruct' or model_name == 'multilingual-e5-large-instruct':
+    if model_name == 'text-embedding-3-large' or model_name == 'text-embedding-3-small' or model_name == 'text-embedding-ada-002' or model_name == 'multilingual-e5-large-instruct':
         return e5_large_instruct
     # if model_name == 'intfloat/multilingual-e5-large' or model_name == 'multilingual-e5-large':
     #     return e5_large

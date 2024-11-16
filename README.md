@@ -1,7 +1,6 @@
-# embeddings-api
-Embeddings API
+# Embeddings API
 
-## Prepare
+## Install
 
 ```
 conda create -n embeddings-api python=3.11 -y
@@ -12,7 +11,7 @@ conda activate embeddings-api
 pip install -U pip
 pip install -r requirements.txt
 
-pip install flash-attn==2.5.8
+# pip install flash-attn==2.5.8
 # pip list --format=freeze > requirements.txt
 ```
 
@@ -20,9 +19,11 @@ pip install flash-attn==2.5.8
 
 ```
 uvicorn main:app --reload --host 0.0.0.0 --port 7998
-or on windows
+
+# or on windows
 ./main.bat
-or on linux
+
+# or on linux
 ./main.sh
 ```
 
@@ -32,8 +33,9 @@ or on linux
 http://localhost:7965/v1/embed
 ```
 
-
 ## Supported Models
+
+- text-embedding-3-large
+- text-embedding-3-small
 - text-embedding-ada-002
-- bce-embedding-base_v1
-- zpoint_large_embedding_zh
+- multilingual-e5-large-instruct
