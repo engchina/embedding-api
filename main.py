@@ -72,13 +72,13 @@ class DocumentClassifyManager(BaseModel):
 WORKER_API_EMBEDDING_BATCH_SIZE = int(os.getenv("FASTCHAT_WORKER_API_EMBEDDING_BATCH_SIZE", 4))
 
 MODELS = {
-    # "text-embedding-3-large": SentenceTransformer(
-    #     model_name_or_path="intfloat/multilingual-e5-large-instruct", trust_remote_code=True, device="cuda"
-    # ),
     "text-embedding-3-large": SentenceTransformer(
-        model_name_or_path="jinaai/jina-embeddings-v3", trust_remote_code=True, device="cuda",
-        model_kwargs={'default_task': 'retrieval.query'}
+        model_name_or_path="intfloat/multilingual-e5-large-instruct", trust_remote_code=True, device="cuda"
     ),
+    # "text-embedding-3-large": SentenceTransformer(
+    #     model_name_or_path="jinaai/jina-embeddings-v3", trust_remote_code=True, device="cuda",
+    #     model_kwargs={'default_task': 'retrieval.query'}
+    # ),
     # "text-embedding-3-small": SentenceTransformer(
     #     "intfloat/multilingual-e5-large-instruct", trust_remote_code=True, device="cuda"
     # ),
