@@ -11,7 +11,7 @@ conda activate embeddings-api
 pip install -U pip
 pip install -r requirements.txt
 
-# pip install flash-attn==2.5.8
+# pip install flash-attn --no-build-isolation
 # pip list --format=freeze > requirements.txt
 ```
 
